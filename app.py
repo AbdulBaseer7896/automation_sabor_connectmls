@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 import os
 import time
 
@@ -20,12 +22,11 @@ def run_selenium():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--remote-debugging-port=9222")
     
-    # Set the correct paths for Chromium and ChromeDriver
-    chrome_options.binary_location = "/usr/bin/chromium-browser"
-    service = Service("/usr/bin/chromedriver")
-    # driver = webdriver.Chrome(options=chrome_options)
+    # Use webdriver_manager to automatically handle ChromeDriver
+    service = ChromeService(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     try:
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        # driver = webdriver.Chrome(service=service, options=chrome_options)
 
         print("test 1")
         driver.get("https://api-sabor.connectmls.com/sso/login")  # replace with your real URL

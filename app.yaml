@@ -7,10 +7,9 @@ services:
     deploy_on_push: true
   source_dir: /
   run_command: gunicorn --worker-tmp-dir /dev/shm --workers 2 --threads 4 --bind 0.0.0.0:$PORT app:app
-  build_command: ./build.sh
   environment_slug: python
   instance_count: 1
-  instance_size_slug: basic-xs  # Use at least basic-xs for Chrome
+  instance_size_slug: basic-xs
   routes:
   - path: /
   http_port: 5000
