@@ -4,10 +4,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import shutil
 import time
 import os
 
 app = Flask(__name__)
+
 
 def run_selenium():
     # chrome_options = webdriver.ChromeOptions()
@@ -22,10 +24,10 @@ def run_selenium():
     chrome_options = webdriver.ChromeOptions()
     # comment out headless if you want to see the browser locally
     # chrome_options.add_argument("--headless")  
-    chrome_options.add_argument("--headless") 
-    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--headless=new")  # use new headless mode
     chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-gpu")       
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
     # chrome_options.add_argument("--disable-dev-shm-usage")
 
@@ -33,7 +35,12 @@ def run_selenium():
     # service = Service("/usr/bin/chromedriver")
 
     # ✅ just use this on Windows
-    driver = webdriver.Chrome(options=chrome_options)
+        # Find chromedriver installed on the system (e.g., from apt or buildpack)
+    chrome_path = shutil.which("chromedriver")
+    service = Service(chrome_path)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    # driver = webdriver.Chrome(options=chrome_options)
     try:
         print("test 1")
         driver.get("https://api-sabor.connectmls.com/sso/login")  # replace with your real URL
