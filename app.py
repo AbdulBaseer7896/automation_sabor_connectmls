@@ -1,45 +1,31 @@
+
 from flask import Flask, jsonify
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import shutil
+from selenium.webdriver.chrome.options import Options
 import time
 import os
 
 app = Flask(__name__)
 
-
 def run_selenium():
-    # chrome_options = webdriver.ChromeOptions()
-    # chrome_options.add_argument("--headless")   # remove this if you want to see the browser locally
-    # chrome_options.add_argument("--no-sandbox")
-    # chrome_options.add_argument("--disable-dev-shm-usage")
-
-    # # Let Selenium automatically find chromedriver on Windows
-    # driver = webdriver.Chrome(options=chrome_options)
-    # service = Service("/usr/bin/chromedriver")  # adjust path for Render
-    # driver = webdriver.Chrome(service=service, options=chrome_options)
-    chrome_options = webdriver.ChromeOptions()
-    # comment out headless if you want to see the browser locally
-    # chrome_options.add_argument("--headless")  
-    chrome_options.add_argument("--headless=new")  # use new headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
-    # chrome_options.add_argument("--disable-dev-shm-usage")
-
-    # ❌ remove this (Linux only)
-    # service = Service("/usr/bin/chromedriver")
-
-    # ✅ just use this on Windows
-        # Find chromedriver installed on the system (e.g., from apt or buildpack)
-    chrome_path = shutil.which("chromedriver")
-    service = Service(chrome_path)
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    
+    # Set the path to chromedriver explicitly
+    chrome_options.binary_location = "/usr/bin/chromium-browser"
+    service = Service("/usr/bin/chromedriver")
+    
     driver = webdriver.Chrome(service=service, options=chrome_options)
-
     # driver = webdriver.Chrome(options=chrome_options)
     try:
         print("test 1")
