@@ -10,22 +10,75 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 import os
 import time
 
+
+
+import os
+import subprocess
+import zipfile
+import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+
+CHROME_PATH = "/usr/bin/google-chrome"
+CHROMEDRIVER_DIR = "/tmp"
+CHROMEDRIVER_PATH = os.path.join(CHROMEDRIVER_DIR, "chromedriver")
+
+def install_chromedriver():
+    # Get Chrome version
+    chrome_version = subprocess.check_output([CHROME_PATH, "--version"]).decode("utf-8").split()[2]
+    major_version = chrome_version.split(".")[0]
+
+    # Get matching Chromedriver version
+    url = f"https://chromedriver.storage.googleapis.com/LATEST_RELEASE_{major_version}"
+    response = requests.get(url)
+    driver_version = response.text.strip()
+
+    # Download Chromedriver
+    driver_zip_url = f"https://chromedriver.storage.googleapis.com/{driver_version}/chromedriver_linux64.zip"
+    zip_path = os.path.join(CHROMEDRIVER_DIR, "chromedriver.zip")
+
+    r = requests.get(driver_zip_url)
+    with open(zip_path, "wb") as f:
+        f.write(r.content)
+
+    # Extract to /tmp
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+        zip_ref.extractall(CHROMEDRIVER_DIR)
+
+    os.chmod(CHROMEDRIVER_PATH, 0o755)
+
+
+
 app = Flask(__name__)
 
 def run_selenium():
-    chrome_options = Options()
-    chrome_options.add_argument("--headless=new")
+    # chrome_options = Options()
+    # chrome_options.add_argument("--headless=new")
+    # chrome_options.add_argument("--no-sandbox")
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument("--disable-gpu")
+    # chrome_options.add_argument("--window-size=1920,1080")
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument("--remote-debugging-port=9222")
+    
+    # # Use webdriver_manager to automatically handle ChromeDriver
+    # service = ChromeService(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    if not os.path.exists(CHROMEDRIVER_PATH):
+        install_chromedriver()
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = CHROME_PATH
+    chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--remote-debugging-port=9222")
-    
-    # Use webdriver_manager to automatically handle ChromeDriver
-    service = ChromeService(ChromeDriverManager().install())
+
+    service = Service(CHROMEDRIVER_PATH)
     driver = webdriver.Chrome(service=service, options=chrome_options)
     try:
+
+
         # driver = webdriver.Chrome(service=service, options=chrome_options)
 
         print("test 1")
