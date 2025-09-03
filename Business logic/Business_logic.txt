@@ -1,0 +1,184 @@
+Page # 1
+
+Point 1 = Parties =  Secretary Of Veterans Affairs  = Owner in the last 
+Point 2 = A = Lot , Block , Subdivision (Legal Name) , city  = city ,  County , compleate address with state id
+
+Point 2 = D = Every time N/Affairs 
+
+Point 3 = B = cross every time
+
+point 3 = c = provieded
+
+
+
+
+
+
+
+Page # 2 
+
+
+first line = address repeated
+
+
+Point 5 => Preferred Title Company: Buyer's Choice   ,  Price 1 and price 2 they tell us
+
+
+Point 5 A (1) every time N/Affairs
+
+
+Point 5 B = > they tell us
+
+
+Point 6  A => every time cross x
+
+point 6 A => Preferred Title Company   (Buyer choice_). 
+
+
+point 6 A (8) (i) = = Every time cross
+
+
+
+Page # 3
+
+
+Point c (1) every time cross
+
+Point c (1)   7 they tell us
+
+
+Point c (2) N/A
+
+
+Point C (3) N/A
+
+
+Point D (ii) 10 every time 10
+
+
+Point E (2) every time cross
+
+
+Page # 4
+
+
+
+point 7 B (2) every time cross , and every time 7
+
+Page # 5 
+
+(1)  every time cross 
+
+(2) every time N/A
+
+Point 9  (A) September 15  2025  (we have to caluate the data 15 days or 21 days palues from current today date.
+
+
+
+Page # 6
+
+
+Point 11  (every time that line is same)
+
+
+Page # 7 clear
+
+
+
+
+
+Page # 8 
+
+
+Point 22  (every time its cross)
+
+
+Page # 9 
+
+
+Buyer Name and the Seller Name from the first page
+
+
+
+
+Page # 10
+
+
+
+Block 1 L = Other Broker Firm:  Loaded Realty Company  and License No they provided 
+
+Block 1 R = List Office: Poly Properties 
+
+Block 2 L = Associate's Name and License No they provided.
+
+Block 2 R = Agent :  Harold Johnson, SFR - 510611 - (210) 473-5578 - realestate@liberated.net
+
+Block 3 L = Associate Email Address = Phone => (210)740 5663  (they provided)
+
+
+
+Block 3 R = Agent: Harold Johnson, SFR - 510611 - (210) 473-5578 - realestate@liberated.net  = Listing Associate's Email Address
+
+
+Block 4 L = They give us
+
+Block 4 R = Null
+
+Block 5 L = They give us
+
+Block 5 R = 8238 Morning Grove and Phone (By clicking List Office: Poly Properties) in Listing Info
+
+Block 6 L = They give us
+
+Block 6 R = City , state And Zip = = =  (By clicking List Office: Poly Properties) in Listing Info
+
+
+
+
+Page # 10   at the end X and 3.000 % they tell us
+
+
+
+
+Page # 11
+
+Escrow Agent => Buyer Choice => Preferred Title Company: Buyer's Choice
+
+
+
+
+
+Page # 12
+
+????
+
+
+
+Page # 13 
+
+
+
+
+
+
+
+
+1) compleate address
+2) state
+3) A => 3 > C  
+
+
+page 2
+
+4) 5 =>  A.  Price :1000 and price 100   
+
+5  B . 10 days
+
+
+
+Page 3
+
+
+
+c  (1)  7 they tell us
+

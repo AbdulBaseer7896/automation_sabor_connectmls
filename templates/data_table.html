@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0"><i class="fas fa-table me-2"></i>Property Data</h3>
+                <span class="badge bg-light text-primary fs-6">{{ properties|length }} records</span>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" id="dataTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Address</th>
+                            <th>Country</th>
+                            <th>Lot</th>
+                            <th>Block</th>
+                            <th>Subdivision</th>
+                            <th>Title Company</th>
+                            <th>Email</th>
+                            <th>Broker Office</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for property in properties %}
+                        <tr>
+                            <td>{{ property.address }}</td>
+                            <td>{{ property.contry }}</td>
+                            <td>{{ property.Lot }}</td>
+                            <td>{{ property.Block }}</td>
+                            <td>{{ property.Subdivision_Legal_Name }}</td>
+                            <td>{{ property.Preferred_Title_Company }}</td>
+                            <td>{{ property.Listing_Associate_Email_Address }}</td>
+                            <td>
+                                {% if property.broker_info %}
+                                {{ property.broker_info.office_name }}
+                                {% else %}
+                                N/A
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-sm btn-outline-primary view-details" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#detailsModal"
+                                            data-property='{{ property | tojson }}'>
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger delete-item"
+                                            data-id="{{ property._id }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="detailsModalLabel">Property Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Details will be inserted here by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize DataTables
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            responsive: true,
+            pageLength: 10,
+            order: [[0, 'asc']]
+        });
+        
+        // View details button handler
+        $('.view-details').on('click', function() {
+            const property = JSON.parse($(this).data('property'));
+            let detailsHtml = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Property Information</h6>
+                        <p><strong>Address:</strong> ${property.address || 'N/A'}</p>
+                        <p><strong>Country:</strong> ${property.contry || 'N/A'}</p>
+                        <p><strong>Lot:</strong> ${property.Lot || 'N/A'}</p>
+                        <p><strong>Block:</strong> ${property.Block || 'N/A'}</p>
+                        <p><strong>Subdivision:</strong> ${property.Subdivision_Legal_Name || 'N/A'}</p>
+                        <p><strong>Title Company:</strong> ${property.Preferred_Title_Company || 'N/A'}</p>
+                        <p><strong>Email:</strong> ${property.Listing_Associate_Email_Address || 'N/A'}</p>
+                    </div>
+                    <div class="col-md-6">
+            `;
+            
+            if (property.broker_info) {
+                detailsHtml += `
+                        <h6 class="text-primary">Broker Information</h6>
+                        <p><strong>Office Name:</strong> ${property.broker_info.office_name || 'N/A'}</p>
+                        <p><strong>Office Type:</strong> ${property.broker_info.office_type || 'N/A'}</p>
+                        <p><strong>Office ID:</strong> ${property.broker_info.office_id || 'N/A'}</p>
+                        <p><strong>Email:</strong> ${property.broker_info.email || 'N/A'}</p>
+                        <p><strong>Website:</strong> ${property.broker_info.website || 'N/A'}</p>
+                        <p><strong>Address:</strong> ${property.broker_info.street_address || 'N/A'}</p>
+                        <p><strong>City/State/Zip:</strong> ${property.broker_info.city_state_zip || 'N/A'}</p>
+                        <p><strong>Phone:</strong> ${property.broker_info.phone || 'N/A'}</p>
+                `;
+            }
+            
+            detailsHtml += `
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h6 class="text-primary">CSV File</h6>
+                        <p><strong>File Path:</strong> ${property.csvFilepath || 'N/A'}</p>
+                    </div>
+                </div>
+            `;
+            
+            $('#modalBody').html(detailsHtml);
+        });
+        
+        // Delete button handler
+        $('.delete-item').on('click', function() {
+            const id = $(this).data('id');
+            if (confirm('Are you sure you want to delete this record?')) {
+                // Implement delete functionality here
+                console.log('Would delete record with ID:', id);
+                // You would typically make an AJAX call to a delete endpoint
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{
+    "contract_date": "11-04-2024",
+    "seller_name": "John Smith",
+    "buyer_name": "Jane Doe",
+    "property": {
+        "lot": "12",
+        "block": "5",
+        "addition": "Oak Meadows",
+        "city": "Austin",
+        "county": "Travis",
+        "address": "123 Main Street, Austin, TX 78701"
+    },
+    "sales_price": {
+        "cash_portion": "50000",
+        "financing_sum": "200000",
+        "total_price": "250000"
+    },
+    "earnest_money": {
+        "amount": "5000",
+        "escrow_agent": "First Title Company",
+        "escrow_address": "456 Title Ave, Austin, TX 78702",
+        "option_fee": "200",
+        "additional_earnest_amount": "2000",
+        "additional_earnest_days": "10",
+        "option_period_days": "10"
+    },
+    "title_company": "First Title Company",
+    "survey": {
+        "days_to_provide": "10",
+        "buyer_provides": false,
+        "seller_provides": true
+    },
+    "closing_date": "15",
+    "closing_month": "12",
+    "closing_year": "2023",
+    "broker_info": {
+        "other_broker_firm": "ABC Realty",
+        "other_broker_license": "123456",
+        "other_broker_associate": "Bob Johnson",
+        "other_broker_associate_license": "654321",
+        "listing_broker_firm": "XYZ Realty",
+        "listing_broker_license": "789012",
+        "listing_broker_associate": "Sarah Wilson",
+        "listing_broker_associate_license": "210987"
+    },
+    "checkboxes": {
+        "third_party_financing": true,
+        "loan_assumption": false,
+        "seller_financing": false,
+        "property_owners_association": true,
+        "backup_contract": false,
+        "residential_leases": false,
+        "fixture_leases": true,
+        "natural_resource_leases": true,
+        "leases_delivered": true,
+        "leases_not_delivered": false,
+        "survey_option1": false,
+        "survey_option2": true,
+        "survey_option3": false,
+        "title_policy_buyer_expense": false,
+        "title_policy_seller_expense": true,
+        "standard_exception_amend_buyer": false,
+        "standard_exception_amend_seller": true,
+        "seller_disclosure_received": true,
+        "seller_disclosure_not_received": false,
+        "seller_disclosure_not_required": false,
+        "property_as_is": false,
+        "property_as_is_with_repairs": true
+    },
+    "contact_info": {
+        "buyer_address": "789 Buyer Lane, Austin, TX 78703",
+        "buyer_phone": "512-555-1234",
+        "buyer_email": "jane.doe@email.com",
+        "buyer_agent": "Mike Taylor",
+        "seller_address": "321 Seller Road, Austin, TX 78704",
+        "seller_phone": "512-555-5678",
+        "seller_email": "john.smith@email.com",
+        "seller_agent": "Amy Chen"
+    },
+    "attorneys": {
+        "buyer_attorney_phone": "512-555-1111",
+        "buyer_attorney_fax": "512-555-1112",
+        "buyer_attorney_email": "buyer.atty@law.com",
+        "seller_attorney_phone": "512-555-2222",
+        "seller_attorney_fax": "512-555-2223",
+        "seller_attorney_email": "seller.atty@law.com"
+    },
+    "repairs_amount": "5000",
+    "residential_service_contract": "400",
+    "special_provisions": "All appliances to remain with the property. Seller to provide home warranty.",
+    "exclusions": "Dining room chandelier, custom bookshelves in study",
+    "repairs_list": "Fix leak under kitchen sink, repair broken patio tile"
+}
