@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-gradient-primary text-white rounded-top-4 py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0"><i class="fas fa-file-pdf me-2"></i>Generate PDF Documents</h3>
+                <span class="badge bg-light text-primary fs-6">{{ properties|length }} properties</span>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="alert alert-info mb-4 rounded-3">
+                <i class="fas fa-info-circle me-2"></i>Click the "Generate PDF" button next to any property to create and download a contract document.
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" id="pdfTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Address</th>
+                            <th>Country</th>
+                            <th>Lot</th>
+                            <th>Block</th>
+                            <th>Subdivision</th>
+                            <th>Title Company</th>
+                            <th>Email</th>
+                            <th>Broker Office</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for property in properties %}
+                        <tr>
+                            <td class="fw-bold">{{ property.address }}</td>
+                            <td>{{ property.contry }}</td>
+                            <td>{{ property.Lot }}</td>
+                            <td>{{ property.Block }}</td>
+                            <td>{{ property.Subdivision_Legal_Name }}</td>
+                            <td>{{ property.Preferred_Title_Company }}</td>
+                            <td>
+                                <a href="mailto:{{ property.Listing_Associate_Email_Address }}" class="text-decoration-none">
+                                    {{ property.Listing_Associate_Email_Address }}
+                                </a>
+                            </td>
+                            <td>
+                                {% if property.broker_info %}
+                                {{ property.broker_info.office_name }}
+                                {% else %}
+                                <span class="text-muted">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <button class="btn btn-primary btn-sm generate-pdf" onclick="generatePDF('propertyIdHere')">Generate PDF</button>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Modal -->
+<div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center py-5">
+                <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h5 class="text-primary">Generating PDF</h5>
+                <p class="text-muted">Please wait while we create your document...</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize DataTables
+    $(document).ready(function() {
+        $('#pdfTable').DataTable({
+            responsive: true,
+            pageLength: 10,
+            order: [[0, 'asc']],
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search properties...",
+                lengthMenu: "Show _MENU_ entries"
+            }
+        });
+        
+        // Generate PDF button handler
+        $('.generate-pdf').on('click', function() {
+            const propertyId = $(this).data('id');
+            const address = $(this).data('address');
+            const propertyData = {
+                _id: propertyId,
+                address: address,
+                Lot: $(this).data('lot'),
+                Block: $(this).data('block'),
+                Subdivision_Legal_Name: $(this).data('subdivision'),
+                Preferred_Title_Company: $(this).data('title-company'),
+                Listing_Associate_Email_Address: $(this).data('email'),
+                broker_info: $(this).data('broker')
+            };
+            
+            // Show loading modal
+            $('#loadingModal').modal('show');
+            
+            // Make AJAX request to generate PDF
+            $.ajax({
+                url: '/generate-pdf',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(propertyData),
+                success: function(response) {
+                    $('#loadingModal').modal('hide');
+                    
+                    if (response.status === 'success') {
+                        // Create a download link and trigger it
+                        const link = document.createElement('a');
+                        link.href = 'data:application/pdf;base64,' + response.pdf;
+                        link.download = response.filename;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        // Show success message
+                        showAlert('PDF generated successfully!', 'success');
+                    } else {
+                        showAlert('Error generating PDF: ' + response.message, 'danger');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('#loadingModal').modal('hide');
+                    showAlert('Error generating PDF: ' + error, 'danger');
+                }
+            });
+        });
+        
+        // Function to show alert
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alertDiv.style.top = '20px';
+            alertDiv.style.right = '20px';
+            alertDiv.style.zIndex = '9999';
+            alertDiv.style.minWidth = '300px';
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alertDiv);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+    });
+</script>
+{% endblock %}

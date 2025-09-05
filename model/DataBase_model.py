@@ -39,12 +39,26 @@ def save_json(data, collection_name="default_collection"):
     return str(result.inserted_id)
 
 
+# def get_all_json(collection_name="default_collection"):
+#     """
+#     Get all documents from the given collection (without _id).
+#     """
+#     collection = mongo.db[collection_name]
+#     return list(collection.find({}, {"_id": 0}))
+
 def get_all_json(collection_name="default_collection"):
     """
-    Get all documents from the given collection (without _id).
+    Get all documents from the given collection (with _id as string).
     """
     collection = mongo.db[collection_name]
-    return list(collection.find({}, {"_id": 0}))
+    data = list(collection.find({}))
+    
+    # Convert ObjectId to string so Jinja/JSON can handle it
+    for doc in data:
+        doc["_id"] = str(doc["_id"])
+    
+    return data
+
 
 
 def delete_json(filter_query, collection_name="default_collection"):

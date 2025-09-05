@@ -25,7 +25,9 @@ def get_all_data():
 @app.route("/view-data")
 def view_data():
     try:
+
         properties = get_all_json(collection_name="properties")
+        print("this is the properties = = " , properties)
         return render_template("data_table.html", properties=properties)
     except Exception as e:
         return render_template("error.html", error=str(e))

@@ -87,7 +87,6 @@ def run_selenium(data):
         time.sleep(2)
         print("test 2")
         # Fill the input box
-        # input_box = driver.find_element(By.XPATH, "/html[1]/body[1]/section[1]/section[1]/div[1]/div[1]/form[1]/input[2]")
         input_box = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.XPATH, "//input[@type='text' or @name='username']"))
         )
@@ -393,6 +392,15 @@ def run_selenium(data):
         print("Extracted Text of address:", address)
         print("Extracted Text of Preferred_Title_Company:", Preferred_Title_Company)
 
+        admin_data ={
+            "state" : data["state"],
+            "sales_price" : data["sales_price"],
+            "earnest_money" : data["earnest_money"],
+            "option_fee" : data["option_fee"],
+            "buyer_approval_deadline_days" : data["buyer_approval_deadline_days"],
+            "survey_delivery_deadline_days" : data["survey_delivery_deadline_days"],
+        }
+
         Main_data = {
             "contry": contry,
             "Lot": Lot,
@@ -402,6 +410,7 @@ def run_selenium(data):
             "Preferred_Title_Company": Preferred_Title_Company,
             "Listing_Associate_Email_Address": Listing_Associate_Email_Address,
             "broker_info": broker_info,
+            "admin_data":admin_data,
             "csvFilepath":data['FilePath']
             }
         
@@ -542,6 +551,12 @@ def run():
                     # Build JSON object with nested broker_info
                     data = {
                         "address": row.get("address", ""),
+                        "state": row.get("state", ""),
+                        "sales_price": row.get("sales_price",""),
+                        "earnest_money": row.get("earnest_money" , ""),
+                        "option_fee": row.get("option_fee" , ""),
+                        "buyer_approval_deadline_days": row.get("buyer_approval_deadline_days" , ""),
+                        "survey_delivery_deadline_days": row.get("survey_delivery_deadline_days" , ""),
                         "FilePath":filepath
                         }
                     

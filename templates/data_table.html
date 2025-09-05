@@ -42,20 +42,24 @@
                                 N/A
                                 {% endif %}
                             </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-outline-primary view-details" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#detailsModal"
-                                            data-property='{{ property | tojson }}'>
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-outline-danger delete-item"
-                                            data-id="{{ property._id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
+<!-- In the actions column of your data_table.html -->
+<td>
+    <div class="btn-group">
+        <button class="btn btn-sm btn-outline-primary view-details" 
+                data-bs-toggle="modal" 
+                data-bs-target="#detailsModal"
+                data-property='{{ property | tojson }}'>
+            <i class="fas fa-eye"></i>
+        </button>
+        <a href="/edit-property/{{ property._id }}" class="btn btn-sm btn-outline-warning">
+            <i class="fas fa-edit"></i>
+        </a>
+        <button class="btn btn-sm btn-outline-danger delete-item"
+                data-id="{{ property._id }}">
+            <i class="fas fa-trash"></i>
+        </button>
+    </div>
+</td>
                         </tr>
                         {% endfor %}
                     </tbody>

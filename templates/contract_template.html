@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            color: #2c3e50;
+        }
+        
+        .header p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+        
+        .property-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            margin-bottom: 8px;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        .signature-area {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #000;
+        }
+        
+        .signature-line {
+            border-bottom: 1px solid #000;
+            margin-top: 25px;
+            padding-bottom: 3px;
+        }
+        
+        .signature-label {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
+        
+        .watermark {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 80px;
+            transform: rotate(-45deg);
+            top: 40%;
+            left: 15%;
+            color: #000;
+            pointer-events: none;
+        }
+        
+        .terms {
+            font-size: 11px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <p class="container">
+        <p class="watermark">CONTRACT</p>
+        
+        <p class="header">
+            <h1>PROPERTY AGREEMENT</h1>
+            <p>Legal Contract for Property Transaction</p>
+        </p>
+        
+        <p class="section">
+            <p class="section-title">Property Information</p>
+            <p class="property-details">
+                <p class="detail-item">
+                    <span class="detail-label">Address:</span>
+                    <span>{{ property_data.address }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Lot:</span>
+                    <span>{{ property_data.Lot }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Block:</span>
+                    <span>{{ property_data.Block }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Subpision:</span>
+                    <span>{{ property_data.Subpision_Legal_Name }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Title Company:</span>
+                    <span>{{ property_data.Preferred_Title_Company }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Contact Email:</span>
+                    <span>{{ property_data.Listing_Associate_Email_Address }}</span>
+                </p>
+            </p>
+        </p>
+        
+        <p class="section">
+            <p class="section-title">Broker Information</p>
+            {% if property_data.broker_info %}
+            <p class="property-details">
+                <p class="detail-item">
+                    <span class="detail-label">Office Name:</span>
+                    <span>{{ property_data.broker_info.office_name }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Office Type:</span>
+                    <span>{{ property_data.broker_info.office_type }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Office ID:</span>
+                    <span>{{ property_data.broker_info.office_id }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Email:</span>
+                    <span>{{ property_data.broker_info.email }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Website:</span>
+                    <span>{{ property_data.broker_info.website }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Phone:</span>
+                    <span>{{ property_data.broker_info.phone }}</span>
+                </p>
+                <p class="detail-item">
+                    <span class="detail-label">Address:</span>
+                    <span>{{ property_data.broker_info.street_address }}, {{ property_data.broker_info.city_state_zip }}</span>
+                </p>
+            </p>
+            {% else %}
+            <p>No broker information available.</p>
+            {% endif %}
+        </p>
+        
+        <p class="section">
+            <p class="section-title">Agreement Terms</p>
+            <p class="terms">
+                <p>This Agreement is made and entered into as of the date of signing by and between the property owner and the interested party.</p>
+                
+                <p>The property described above is subject to the terms and conditions set forth in this agreement. All parties agree to abide by the contractual obligations outlined herein.</p>
+                
+                <p>This document serves as a binding agreement between the parties involved in the property transaction. Any disputes arising from this agreement shall be resolved in accordance with the laws of the state where the property is located.</p>
+            </p>
+        </p>
+        
+        <p class="signature-area">
+            <p style="display: flex; justify-content: space-between;">
+                <p style="width: 45%;">
+                    <p class="signature-line"></p>
+                    <p class="signature-label">Property Owner Signature</p>
+                    <p class="signature-label">Date: ___________________</p>
+                </p>
+                
+                <p style="width: 45%;">
+                    <p class="signature-line"></p>
+                    <p class="signature-label">Buyer Signature</p>
+                    <p class="signature-label">Date: ___________________</p>
+                </p>
+            </p>
+            
+            <p style="margin-top: 30px;">
+                <p class="signature-line" style="width: 60%; margin-left: auto; margin-right: auto;"></p>
+                <p class="signature-label" style="text-align: center;">Witness Signature</p>
+                <p class="signature-label" style="text-align: center;">Date: ___________________</p>
+            </p>
+        </p>
+        
+        <p class="footer">
+            <p>This document was generated on {{ generation_date }}. Please retain a copy for your records.</p>
+            <p>Document ID: {{ document_id }}</p>
+        </p>
+    </p>
+</body>
+</html>

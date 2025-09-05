@@ -12,7 +12,7 @@ import time
 import tempfile
 from db import init_db
 import time
-
+from db import init_db, mongo 
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
