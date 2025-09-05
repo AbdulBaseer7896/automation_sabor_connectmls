@@ -632,41 +632,41 @@ class RealEstateContractGenerator:
         
         return output_path
 
-# Example usage
-if __name__ == "__main__":
-    # Sample JSON data (replace with your actual JSON)
-    sample_json = {
-        "contry": "Bexar",
-        "Lot": "36",
-        "Block": "1",
-        "Subdivision_Legal_Name": "HEIGHTS OF WESTCREEK PH 1",
-        "address": "1208 Creek Knoll , San Antonio, Texas 78253-5391",
-        "Preferred_Title_Company": "University Title",
-        "Listing_Associate_Email_Address": "jboggs@kw.com",
-        "broker_info": {
-            "office_name": "Keller Williams Heritage",
-            "office_type": "Realty",
-            "office_id": "KLWM00",
-            "email": "broker@mykwsa.com",
-            "website": "https://www.heritagepropertymanagementsa.com/",
-            "street_address": "1717 N. Loop 1604 E",
-            "city_state_zip": "San Antonio TX, 78232",
-            "phone": "(210) 493-3030"
-        },
-        "admin_data": {
-            "state": "Punjab",
-            "sales_price": "1000",
-            "earnest_money": "2000",
-            "option_fee": "100",
-            "buyer_approval_deadline_days": "",
-            "survey_delivery_deadline_days": ""
-        },
-        "csvFilepath": "CSVstore\\Testing_20250905-161919.csv",
-        "docusign_id": "AA36957E-5678-43F3-B524-A4EBF6685470"
-    }
+# # Example usage
+# if __name__ == "__main__":
+#     # Sample JSON data (replace with your actual JSON)
+#     sample_json = {
+#         "contry": "Bexar",
+#         "Lot": "36",
+#         "Block": "1",
+#         "Subdivision_Legal_Name": "HEIGHTS OF WESTCREEK PH 1",
+#         "address": "1208 Creek Knoll , San Antonio, Texas 78253-5391",
+#         "Preferred_Title_Company": "University Title",
+#         "Listing_Associate_Email_Address": "jboggs@kw.com",
+#         "broker_info": {
+#             "office_name": "Keller Williams Heritage",
+#             "office_type": "Realty",
+#             "office_id": "KLWM00",
+#             "email": "broker@mykwsa.com",
+#             "website": "https://www.heritagepropertymanagementsa.com/",
+#             "street_address": "1717 N. Loop 1604 E",
+#             "city_state_zip": "San Antonio TX, 78232",
+#             "phone": "(210) 493-3030"
+#         },
+#         "admin_data": {
+#             "state": "Punjab",
+#             "sales_price": "1000",
+#             "earnest_money": "2000",
+#             "option_fee": "100",
+#             "buyer_approval_deadline_days": "",
+#             "survey_delivery_deadline_days": ""
+#         },
+#         "csvFilepath": "CSVstore\\Testing_20250905-161919.csv",
+#         "docusign_id": "AA36957E-5678-43F3-B524-A4EBF6685470"
+#     }
     
-    # Generate the PDF
-    generator = RealEstateContractGenerator(sample_json)
-    output_path = "real_estate_contract.pdf"
-    generator.generate_pdf(output_path)
-    print(f"PDF generated successfully: {output_path}")
+#     # Generate the PDF
+#     generator = RealEstateContractGenerator(sample_json)
+#     output_path = "real_estate_contract.pdf"
+#     generator.generate_pdf(output_path)
+#     print(f"PDF generated successfully: {output_path}")
