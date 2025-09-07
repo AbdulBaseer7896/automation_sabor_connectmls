@@ -446,24 +446,14 @@ def run_selenium(data):
 
 
 
-
-# @app.route("/run", methods=["GET"])
-# def run():
-#     result = run_selenium()
-#     return jsonify(result)
-
-
 def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
-# import time
-# from flask import jsonify
 
-# @app.route("/run", methods=["GET", "POST"])
+# @app.route("/run", methods=['GET', 'POST'])
 # def run():
-
 #     print("its working")
 #     if request.method == 'POST':
 #         if 'file' not in request.files:
@@ -478,41 +468,122 @@ def allowed_file(filename):
 #             folder = "CSVstore"
 #             os.makedirs(folder, exist_ok=True)
             
-#             # Secure the filename
+#             # Secure and make unique filename
 #             original_name = secure_filename(file.filename)
 #             name, ext = os.path.splitext(original_name)
-            
-#             # Add unique timestamp to filename
 #             timestamp = time.strftime("%Y%m%d-%H%M%S")
 #             unique_filename = f"{name}_{timestamp}{ext}"
-            
-#             # Save into CSVstore folder
 #             filepath = os.path.join(folder, unique_filename)
-#             file.save(filepath)
             
-#             print(f"File saved as {filepath}")
+#             # Save file
+#             file.save(filepath)
+#             print(f"✅ File saved as {filepath}")
+            
+#             results = []
+            
+#             # Read file row by row
+#             with open(filepath, newline='', encoding="utf-8") as csvfile:
+#                 reader = csv.DictReader(csvfile)
+                
+#                 for row in reader:
+#                     # Build JSON object with nested broker_info
+#                     data = {
+#                         "address": row.get("address", ""),
+#                         "state": row.get("state", ""),
+#                         "sales_price": row.get("sales_price",""),
+#                         "earnest_money": row.get("earnest_money" , ""),
+#                         "option_fee": row.get("option_fee" , ""),
+#                         "buyer_approval_deadline_days": row.get("buyer_approval_deadline_days" , ""),
+#                         "survey_delivery_deadline_days": row.get("survey_delivery_deadline_days" , ""),
+#                         "FilePath":filepath
+#                         }
+                    
 
-#     start_time = time.time()  # record start
-#     result = run_selenium()
-#     end_time = time.time()    # record end
+#                     print("this is the data = = =" , data)
+                    
+#                     # Call run_selenium for each row
+#                     selenium_result = run_selenium(data)
+                    
+#                     results.append({
+#                         "input": data,
+#                         "output": selenium_result
+#                     })
+            
+#             return jsonify(results)
     
-#     elapsed_time = end_time - start_time  # seconds
-#     print(f"{elapsed_time:.2f} seconds")
-#     print("This is the result:", result )
-#     # attach elapsed time to your result
-#     # if isinstance(result, dict):
-#     #     result["elapsed_time"] = f"{elapsed_time:.2f} seconds"
-    
-#     return jsonify(result)
+#     return render_template('index.html')
 
 
 
-
-import os
-import time
 import csv
-from flask import request, redirect, url_for, render_template, jsonify
-from werkzeug.utils import secure_filename
+import threading
+
+REQUIRED_COLUMNS = [
+    "address",
+    "state",
+    "sales_price",
+    "earnest_money",
+    "option_fee",
+    "buyer_approval_deadline_days",
+    "survey_delivery_deadline_days"
+]
+
+def validate_csv(filepath):
+    """Validate CSV file structure and rows."""
+    errors = []
+    with open(filepath, newline='', encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+
+        # ✅ Check columns
+        if set(reader.fieldnames) != set(REQUIRED_COLUMNS):
+            missing = set(REQUIRED_COLUMNS) - set(reader.fieldnames)
+            extra = set(reader.fieldnames) - set(REQUIRED_COLUMNS)
+            if missing:
+                errors.append(f"Missing columns: {', '.join(missing)}")
+            if extra:
+                errors.append(f"Extra columns: {', '.join(extra)}")
+
+        # ✅ Check rows for missing address
+        for i, row in enumerate(reader, start=2):
+            if not row.get("address") or row["address"].strip() == "":
+                errors.append(f"Row {i} has no address")
+
+    return errors
+
+
+def background_selenium(filepath):
+    """Run Selenium scraping in the background."""
+    results = []
+    with open(filepath, newline='', encoding="utf-8") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            data = {
+                "address": row.get("address", ""),
+                "state": row.get("state", ""),
+                "sales_price": row.get("sales_price", ""),
+                "earnest_money": row.get("earnest_money", ""),
+                "option_fee": row.get("option_fee", ""),
+                "buyer_approval_deadline_days": row.get("buyer_approval_deadline_days", ""),
+                "survey_delivery_deadline_days": row.get("survey_delivery_deadline_days", ""),
+                "FilePath": filepath
+            }
+
+            print("this is the data = = =", data)
+            selenium_result = run_selenium(data)
+
+            results.append({
+                "input": data,
+                "output": selenium_result
+            })
+    
+    # Save results to file or database
+    results_file = filepath.replace(".csv", "_results.json")
+    with open(results_file, "w", encoding="utf-8") as f:
+        import json
+        json.dump(results, f, indent=2)
+
+    print(f"✅ Background Selenium finished. Results saved at {results_file}")
+
 
 @app.route("/run", methods=['GET', 'POST'])
 def run():
@@ -526,51 +597,36 @@ def run():
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
-            # Ensure CSVstore folder exists
             folder = "CSVstore"
             os.makedirs(folder, exist_ok=True)
             
-            # Secure and make unique filename
             original_name = secure_filename(file.filename)
             name, ext = os.path.splitext(original_name)
             timestamp = time.strftime("%Y%m%d-%H%M%S")
             unique_filename = f"{name}_{timestamp}{ext}"
             filepath = os.path.join(folder, unique_filename)
             
-            # Save file
             file.save(filepath)
             print(f"✅ File saved as {filepath}")
-            
-            results = []
-            
-            # Read file row by row
-            with open(filepath, newline='', encoding="utf-8") as csvfile:
-                reader = csv.DictReader(csvfile)
-                
-                for row in reader:
-                    # Build JSON object with nested broker_info
-                    data = {
-                        "address": row.get("address", ""),
-                        "state": row.get("state", ""),
-                        "sales_price": row.get("sales_price",""),
-                        "earnest_money": row.get("earnest_money" , ""),
-                        "option_fee": row.get("option_fee" , ""),
-                        "buyer_approval_deadline_days": row.get("buyer_approval_deadline_days" , ""),
-                        "survey_delivery_deadline_days": row.get("survey_delivery_deadline_days" , ""),
-                        "FilePath":filepath
-                        }
-                    
 
-                    print("this is the data = = =" , data)
-                    
-                    # Call run_selenium for each row
-                    selenium_result = run_selenium(data)
-                    
-                    results.append({
-                        "input": data,
-                        "output": selenium_result
-                    })
-            
-            return jsonify(results)
+            # 🔍 Validate CSV
+# inside /run
+            errors = validate_csv(filepath)
+            if errors:
+                return render_template("error_wrong_csv.html", reasons=errors), 400
+
+            # 🚀 Run Selenium in background
+            # 🚀 Run Selenium in background
+            thread = threading.Thread(target=background_selenium, args=(filepath,))
+            thread.start()
+
+            # ✅ Render success page
+            return render_template(
+                "successfull_csv_uploaded.html",
+                status="success",
+                message="Scraping started. Your data will be available soon.",
+                file=filepath
+            )
+
     
     return render_template('index.html')

@@ -1,15 +1,3 @@
-from flask import request, jsonify, render_template
-import base64
-from datetime import datetime
-from xhtml2pdf import pisa
-from io import BytesIO
-import uuid
-from app import app
-from model.DataBase_model import get_all_json , get_filtered_properties
-
-
-
-
 import json
 import os
 from datetime import datetime
@@ -22,6 +10,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.fonts import addMapping
 from reportlab.pdfgen import canvas
+from io import BytesIO
 
 class RealEstateContractGenerator:
     def __init__(self, json_data):
@@ -1479,87 +1468,31 @@ class RealEstateContractGenerator:
         
         return output_path
 
-
-
-
-@app.route('/generate-pdf', methods=['POST'])
-def generate_pdf():
-    try:
-        # Get property data from request
-        property_data = request.get_json()
-        if not property_data:
-            return jsonify({'status': 'error', 'message': 'No property data received'}), 400
-
-        # Generate a unique document ID
-        document_id = str(uuid.uuid4())[:8].upper()
-        property_data["document_id"] = document_id
-
-        # Generate PDF using the new class
-        pdf_generator = RealEstateContractGenerator(property_data)
-
-        # Instead of saving to disk, write PDF into memory
-        pdf_buffer = BytesIO()
-        pdf_generator.generate_pdf(pdf_buffer)
-        pdf_data = pdf_buffer.getvalue()
-        pdf_buffer.close()
-
-        # Convert to base64 for frontend
-        pdf_base64 = base64.b64encode(pdf_data).decode('utf-8')
-
-        filename = f"Property_Agreement_{property_data.get('address','Property').replace(' ', '_').replace(',', '')}.pdf"
-
-        return jsonify({
-            'status': 'success',
-            'message': 'PDF generated successfully',
-            'pdf': pdf_base64,
-            'filename': filename
-        })
-
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
-
-
-# @app.route("/generate-pdf-page")
-# def generate_pdf_page():
-#     try:
-#         # Get all data from the properties collection
-#         properties = get_all_json(collection_name="properties")
-#         return render_template("generate_pdf.html", properties=properties)
-#     except Exception as e:
-#         return render_template("error.html", error=str(e))
-
-
-import math
-
-
-
-@app.route("/generate-pdf-page")
-def generate_pdf_page():
-    try:
-        # Get query parameters for initial page load
-        page = request.args.get('page', 1, type=int)
-        per_page = request.args.get('per_page', 10, type=int)
-        search = request.args.get('search', '')
-        
-        # Get filtered and paginated data
-        properties, total_count = get_filtered_properties(
-            collection_name="properties",
-            search=search,
-            page=page,
-            per_page=per_page
-        )
-        
-        # Calculate total pages
-        total_pages = math.ceil(total_count / per_page) if per_page > 0 else 1
-        
-        return render_template(
-            "generate_pdf.html", 
-            properties=properties,
-            current_page=page,
-            per_page=per_page,
-            total_pages=total_pages,
-            total_count=total_count,
-            search=search
-        )
-    except Exception as e:
-        return render_template("error.html", error=str(e))
+# Example usage:
+if __name__ == "__main__":
+    # Sample data structure that matches the image
+    sample_data = {
+        "docusign_id": "AA36957E-5678-43F3-B524-A4E6F6685470",
+        "contract_date": "11-04-2024",
+        "seller": "SECRETARY OF VETERANS AFFAIRS",
+        "buyer": "Silverkey investments LLC or Designated entity",
+        "Lot": "36",
+        "Block": "1",
+        "Subdivision_Legal_Name": "HEIGHTS OF WESTCREEK PH 1",
+        "contry": "Bexar",
+        "address": "1208 CREEK KNL TX 78253",
+        "admin_data": {
+            "sales_price": "135,000.00"
+        },
+        "broker_info": {
+            "office_name": "Loaded Realty Company",
+            "street_address": "825 Town & Country Ln Houston TX 77024",
+            "phone": "2107405653",
+            "fax": "www.wolf.com"
+        }
+    }
+    
+    # Generate PDF
+    generator = RealEstateContractGenerator(sample_data)
+    generator.generate_pdf("real_estate_contract_page1-13.pdf")
+    # generator.add_earnest_money_section("real_estate_contract_page2.pdf")
