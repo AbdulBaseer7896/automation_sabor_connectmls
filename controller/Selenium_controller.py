@@ -18,7 +18,7 @@ import tempfile
 def switch_window(driver, index, context="Unknown", box_name=""):
         if len(driver.window_handles) > index:
             driver.switch_to.window(driver.window_handles[index])
-            print(f"🔀 Switched to window {index} ({box_name})")
+            # print(f"🔀 Switched to window {index} ({box_name})")
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -82,10 +82,10 @@ def run_selenium(data):
     try:
         # driver = webdriver.Chrome(service=service, options=chrome_options)
 
-        print("test 1")
+        # print("test 1")
         driver.get("https://api-sabor.connectmls.com/sso/login")  # replace with your real URL
         time.sleep(2)
-        print("test 2")
+        # print("test 2")
         # Fill the input box
         input_box = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.XPATH, "//input[@type='text' or @name='username']"))
@@ -93,22 +93,22 @@ def run_selenium(data):
         input_box.send_keys("817205")
 
 
-        time.sleep(5)
-        print("test 3")
+        # time.sleep(5)
+        # print("test 3")
 
         input_box = driver.find_element(By.XPATH, "/html[1]/body[1]/section[1]/section[1]/div[1]/div[1]/form[1]/input[3]")
 
         # Enter text into the input box
         input_box.send_keys("TitoBabi$123")
 
-        print("test 4")
+        # print("test 4")
         # Click the button
         button = driver.find_element(By.XPATH, "/html[1]/body[1]/section[1]/section[1]/div[1]/div[1]/form[1]/button[1]")
         button.click()
 
-        time.sleep(15)
+        time.sleep(5)
 
-        print("test 5")
+        # print("test 5")
 
         element = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/div[1]/div[2]/div[2]/md-card[1]/md-card-actions[1]/a[2]/span[1]/span[1]"))
@@ -117,20 +117,20 @@ def run_selenium(data):
         element.click()
 
 
-        print("test 6")
+        # print("test 6")
         time.sleep(5)
 
-        print("test 7")
+        # print("test 7")
         WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))  # wait until 2 tabs exist
         driver.switch_to.window(driver.window_handles[-1])  # move to the newest tab
-        print("Switched to new tab:", driver.title)
+        # print("Switched to new tab:", driver.title)
 
 
         current_url = driver.current_url
-        print("Current URL:", current_url)
+        # print("Current URL:", current_url)
 
-        print("test 8")
-        time.sleep(15)
+        # print("test 8")
+        time.sleep(10)
 
 
         element = WebDriverWait(driver, 10).until(
@@ -138,19 +138,19 @@ def run_selenium(data):
         )
         # Click the element
         element.click()
-        time.sleep(20)
+        time.sleep(10)
 
 
-        print("test 9")
+        # print("test 9")
 
         input_box = driver.find_element(By.XPATH, "/html[1]/body[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[1]/div[1]/div[1]/input[1]")
 
         # Enter text into the input box
         input_box.send_keys("jev@trustwcrealty.com")
 
-        print("test 10")
+        # print("test 10")
 
-        time.sleep(5)
+        # time.sleep(5)
         # Wait to see the result
 
 
@@ -159,7 +159,7 @@ def run_selenium(data):
         # Enter text into the input box
         input_box.send_keys("WholeSaleRE$987")
 
-        print("test 11")
+        # print("test 11")
 
         element = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/div[2]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[2]/form[1]/div[2]/button[1]"))
@@ -167,8 +167,8 @@ def run_selenium(data):
         # Click the element
         element.click()
 
-        time.sleep(15)
-        print("test 12")
+        time.sleep(10)
+        # print("test 12")
 
 
         element = WebDriverWait(driver, 10).until(
@@ -177,70 +177,70 @@ def run_selenium(data):
         # Click the element
         element.click()
 
-        print("test 12.1")
+        # print("test 12.1")
 
         input_box = driver.find_element(By.XPATH, "/html[1]/body[1]/div[1]/div[2]/div[6]/div[1]/form[1]/md-autocomplete[1]/md-autocomplete-wrap[1]/input[1]")
 
         # Enter text into the input box
         # input_box.send_keys("1208 Creek Knoll")
-        print("this is the address = = " , data["address"])
+        # print("this is the address = = " , data["address"])
         input_box.send_keys(data["address"])
 
-        time.sleep(10)
-        print("test 12.22")
+        time.sleep(5)
+        # print("test 12.22")
 
         element = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/md-virtual-repeat-container[1]/div[1]/div[2]/ul[1]/li[3]/md-autocomplete-parent-scope[1]/div[1]/div[2]/div[1]/div[1]"))
         )
         # Click the element
         element.click()
-        print("test 12.2.1")
-        time.sleep(10)
+        # print("test 12.2.1")
+        time.sleep(5)
 
         # contry = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[7]/td[1]/span[1]"))
         # ) 
         contry = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[7]/td[1]/span[1]")
 
-        print("test 12.3")
+        # print("test 12.3")
         # Lot = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[5]/td[1]/span[1]"))
         # )
         Lot = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[5]/td[1]/span[1]")
 
-        print("test 12.4")
+        # print("test 12.4")
         # Block = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[4]/td[1]/span[1]"))
         # )
         Block = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[4]/td[1]/span[1]")
-        print("test 12.5")  
+        # print("test 12.5")  
         # Subdivision_Legal_Name = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[9]/td[1]/span[1]"))
         # )
         Subdivision_Legal_Name = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[1]/div[1]/table[1]/tbody[1]/tr[9]/td[1]/span[1]")
 
-        print("test 12.6")
+        # print("test 12.6")
         # address = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/span[1]"))
         # )
         address = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/span[1]")
-        print("test 12.7")  
+        # print("test 12.7")  
         # Preferred_Title_Company = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[5]/div[1]/div[2]/table[1]/tbody[1]/tr[16]/td[1]/span[1]/report-field[1]/span[1]/a[1]"))
         # )
         Preferred_Title_Company = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[5]/div[1]/div[2]/table[1]/tbody[1]/tr[16]/td[1]/span[1]/report-field[1]/span[1]/a[1]")
 
-        print("test 12.8")
+        # print("test 12.8")
         # Listing_Associate_Email_Address = WebDriverWait(driver, 10).until(
         #     EC.visibility_of_element_located((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[5]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/span[1]/report-field[4]/span[1]/a[1]"))
         # )
         Listing_Associate_Email_Address = get_element(driver, "xpath", "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[5]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/span[1]/report-field[4]/span[1]/a[1]")
-        print("test 12.8.1")
+        # print("test 12.8.1")
 
 
         # Store current window handles before clicking
         current_windows = driver.window_handles
-        print(f"Current windows: {len(current_windows)}")
+        # print(f"Current windows: {len(current_windows)}")
 
         element = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html[1]/body[1]/div[3]/div[1]/div[2]/div[5]/div[6]/div[1]/div[2]/div[3]/div[2]/div[1]/div[4]/div[3]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/span[1]/report-field[1]/span[1]/a[1]"))
@@ -249,27 +249,27 @@ def run_selenium(data):
 
         # Wait for new window to open
         WebDriverWait(driver, 15).until(lambda d: len(d.window_handles) > len(current_windows))
-        print(f"New windows: {len(driver.window_handles)}")
+        # print(f"New windows: {len(driver.window_handles)}")
 
         # Get the new window handle
         new_windows = [window for window in driver.window_handles if window not in current_windows]
         if new_windows:
             driver.switch_to.window(new_windows[0])
-            print("Switched to new window")
+            # print("Switched to new window")
         else:
-            print("No new window found, trying to switch to last window")
+            # print("No new window found, trying to switch to last window")
             driver.switch_to.window(driver.window_handles[-1])
 
-        print("test 12.9.1")  
+        # print("test 12.9.1")  
         time.sleep(5)
         current_url = driver.current_url
-        print("Current URL:", current_url)
+        # print("Current URL:", current_url)
 
         # Check if we need to switch to a frame
         try:
             # First try to find iframe by index 0
             driver.switch_to.frame(0)
-            print("Switched to iframe by index")
+            # print("Switched to iframe by index")
         except:
             try:
                 # If that fails, try to find iframe by tag name
@@ -277,11 +277,11 @@ def run_selenium(data):
                     EC.presence_of_element_located((By.TAG_NAME, "iframe"))
                 )
                 driver.switch_to.frame(iframe)
-                print("Switched to iframe by tag name")
+                # print("Switched to iframe by tag name")
             except:
                 print("No iframe found, continuing with main content")
 
-        print("test 12.10")
+        # print("test 12.10")
 
 
 
@@ -290,7 +290,7 @@ def run_selenium(data):
 
         # Switch back to default content first
         driver.switch_to.default_content()
-        print("Switched back to default content")
+        # print("Switched back to default content")
 
         # Now find and switch to the workspace iframe
         try:
@@ -298,7 +298,7 @@ def run_selenium(data):
                 EC.presence_of_element_located((By.ID, "workspace"))
             )
             driver.switch_to.frame(workspace_iframe)
-            print("Switched to workspace iframe")
+            # print("Switched to workspace iframe")
             
             # Wait for content to load
             time.sleep(3)
@@ -364,18 +364,7 @@ def run_selenium(data):
                 ).text
             except:
                 broker_info['phone'] = "Not found"
-            
-            # Print all extracted information
-            print("Extracted Broker Information:")
-            for key, value in broker_info.items():
-                print(f"{key}: {value}")
-            
-            # Return the extracted data
-            # return broker_info
 
-
-
-            
         except Exception as e:
             # Return error information
             return {"status": "error", "message": str(e)}
@@ -384,13 +373,13 @@ def run_selenium(data):
 
             # "Listing_Broker_Firmname": broker_info
 
-        print("test 13")
-        print("Extracted contry:", contry)
-        print("Extracted Text of Lot:", Lot)
-        print("Extracted Text of Block:", Block)
-        print("Extracted Text of Subdivision_Legal_Name:", Subdivision_Legal_Name)
-        print("Extracted Text of address:", address)
-        print("Extracted Text of Preferred_Title_Company:", Preferred_Title_Company)
+        # print("test 13")
+        # print("Extracted contry:", contry)
+        # print("Extracted Text of Lot:", Lot)
+        # print("Extracted Text of Block:", Block)
+        # print("Extracted Text of Subdivision_Legal_Name:", Subdivision_Legal_Name)
+        # print("Extracted Text of address:", address)
+        # print("Extracted Text of Preferred_Title_Company:", Preferred_Title_Company)
 
         admin_data ={
             "state" : data["state"],
@@ -414,9 +403,9 @@ def run_selenium(data):
             "csvFilepath":data['FilePath']
             }
         
-        print( "This is the data", Main_data)
+        # print( "This is the data", Main_data)
         doc_id = save_json(Main_data, "properties")
-        print("Inserted ID:", doc_id)
+        # print("Inserted ID:", doc_id)
         # print("Extracted Text of Listing_Associate_Email_Address:", Listing_Associate_Email_Address.text)
         # print("Extracted Text of Listing_Broker_Firmname:", broker_info)
         # # print("Extracted Text of Listing_Associate_Name:", Listing_Associate_Name.text)
@@ -449,69 +438,6 @@ def run_selenium(data):
 def allowed_file(filename):
     return '.' in filename and \
             filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
-
-
-
-# @app.route("/run", methods=['GET', 'POST'])
-# def run():
-#     print("its working")
-#     if request.method == 'POST':
-#         if 'file' not in request.files:
-#             return redirect(request.url)
-        
-#         file = request.files['file']
-#         if file.filename == '':
-#             return redirect(request.url)
-        
-#         if file and allowed_file(file.filename):
-#             # Ensure CSVstore folder exists
-#             folder = "CSVstore"
-#             os.makedirs(folder, exist_ok=True)
-            
-#             # Secure and make unique filename
-#             original_name = secure_filename(file.filename)
-#             name, ext = os.path.splitext(original_name)
-#             timestamp = time.strftime("%Y%m%d-%H%M%S")
-#             unique_filename = f"{name}_{timestamp}{ext}"
-#             filepath = os.path.join(folder, unique_filename)
-            
-#             # Save file
-#             file.save(filepath)
-#             print(f"✅ File saved as {filepath}")
-            
-#             results = []
-            
-#             # Read file row by row
-#             with open(filepath, newline='', encoding="utf-8") as csvfile:
-#                 reader = csv.DictReader(csvfile)
-                
-#                 for row in reader:
-#                     # Build JSON object with nested broker_info
-#                     data = {
-#                         "address": row.get("address", ""),
-#                         "state": row.get("state", ""),
-#                         "sales_price": row.get("sales_price",""),
-#                         "earnest_money": row.get("earnest_money" , ""),
-#                         "option_fee": row.get("option_fee" , ""),
-#                         "buyer_approval_deadline_days": row.get("buyer_approval_deadline_days" , ""),
-#                         "survey_delivery_deadline_days": row.get("survey_delivery_deadline_days" , ""),
-#                         "FilePath":filepath
-#                         }
-                    
-
-#                     print("this is the data = = =" , data)
-                    
-#                     # Call run_selenium for each row
-#                     selenium_result = run_selenium(data)
-                    
-#                     results.append({
-#                         "input": data,
-#                         "output": selenium_result
-#                     })
-            
-#             return jsonify(results)
-    
-#     return render_template('index.html')
 
 
 
@@ -568,7 +494,7 @@ def background_selenium(filepath):
                 "FilePath": filepath
             }
 
-            print("this is the data = = =", data)
+            # print("this is the data = = =", data)
             selenium_result = run_selenium(data)
 
             results.append({
@@ -582,12 +508,12 @@ def background_selenium(filepath):
         import json
         json.dump(results, f, indent=2)
 
-    print(f"✅ Background Selenium finished. Results saved at {results_file}")
+    # print(f"✅ Background Selenium finished. Results saved at {results_file}")
 
 
 @app.route("/run", methods=['GET', 'POST'])
 def run():
-    print("its working")
+    # print("its working")
     if request.method == 'POST':
         if 'file' not in request.files:
             return redirect(request.url)
@@ -607,7 +533,7 @@ def run():
             filepath = os.path.join(folder, unique_filename)
             
             file.save(filepath)
-            print(f"✅ File saved as {filepath}")
+            # print(f"✅ File saved as {filepath}")
 
             # 🔍 Validate CSV
 # inside /run

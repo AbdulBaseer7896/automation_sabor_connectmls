@@ -12,7 +12,7 @@ from model.DataBase_model import get_all_json , get_filtered_properties
 
 import json
 import os
-from datetime import datetime
+
 from reportlab.lib.pagesizes import letter, inch
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -1518,15 +1518,6 @@ def generate_pdf():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-
-# @app.route("/generate-pdf-page")
-# def generate_pdf_page():
-#     try:
-#         # Get all data from the properties collection
-#         properties = get_all_json(collection_name="properties")
-#         return render_template("generate_pdf.html", properties=properties)
-#     except Exception as e:
-#         return render_template("error.html", error=str(e))
 
 
 import math

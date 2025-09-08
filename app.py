@@ -10,7 +10,6 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 import os
 import time
 import tempfile
-from db import init_db
 import time
 from db import init_db, mongo 
 from werkzeug.utils import secure_filename
@@ -29,17 +28,6 @@ app.config['ALLOWED_EXTENSIONS'] = {'csv'}
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    print("its working")
-    # if request.method == 'POST':
-    #     if 'file' not in request.files:
-    #         return redirect(request.url)
-    #     file = request.files['file']
-    #     if file.filename == '':
-    #         return redirect(request.url)
-    #     if file and allowed_file(file.filename):
-    #         filename = secure_filename(file.filename)
-    #         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    #         return redirect(url_for('home'))
     return render_template('index.html')
 
 
