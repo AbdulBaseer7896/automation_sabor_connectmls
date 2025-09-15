@@ -1,0 +1,19 @@
+{
+    "address": "123 Main St",
+    "Lot": "45",
+    "Block": "A",
+    "Subdivision_Legal_Name": "Sunset Estates",
+    "Preferred_Title_Company": "ABC Title",
+    "Listing_Associate_Email_Address": "agent@example.com",
+    "broker_info": {
+        "office_name": "Best Realty",
+        "office_type": "Brokerage",
+        "office_id": "BR123",
+        "email": "broker@example.com",
+        "website": "www.bestrealty.com",
+        "phone": "555-1234",
+        "street_address": "456 Market St",
+        "city_state_zip": "Houston, TX 77001"
+    },
+    "document_id": "E93E3135"
+}

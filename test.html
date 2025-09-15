@@ -88,6 +88,252 @@
             min-width: 150px;
             padding: 0 3px;
         }
+
+
+        /* Container and overall */
+        .notices-container {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 1000px;
+            margin: 24px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Title and description */
+        .section-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            margin: 0 0 16px 0;
+            line-height: 1.3;
+            color: #222;
+        }
+
+        /* 2-column layout */
+        .notice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* Column card (visually not boxed, but useful for spacing) */
+        .notice-col {
+            min-width: 0;
+        }
+
+        /* Header of each column (To Buyer at:, To Seller at:) */
+        .col-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Label above line */
+        .field-label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: #111;
+        }
+
+        /* Horizontal line used to emulate blank signature/line area */
+        .line {
+            border-bottom: 1px solid #000;
+            height: 20px;
+            /* controls vertical spacing / "line height" */
+            margin-bottom: 12px;
+        }
+
+        /* smaller single-line entry (like Phone:) */
+        .small-line {
+            width: 70%;
+            border-bottom: 1px solid #000;
+            height: 18px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        /* stacked rows inside a column */
+        .field-row {
+            margin-bottom: 10px;
+        }
+
+        /* "With a copy to ..." text (slightly smaller) */
+        .copy-note {
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Agent sub-block (label + line) */
+        .agent-block {
+            margin-top: 6px;
+        }
+
+        /* small print spacing to mimic the image layout */
+        .two-lines {
+            margin-bottom: 6px;
+        }
+
+        /* responsive fallback: stack columns on narrow screens */
+        @media (max-width: 640px) {
+            .notice-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+
+
+
+
+        /* Executed box */
+        .executed-box {
+            border: 2px solid #000;
+            padding: 10px;
+            margin-top: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* inline blank lines */
+        .small-inline {
+            width: 40px;
+            display: inline-block;
+        }
+
+        .large-inline {
+            width: 160px;
+            display: inline-block;
+        }
+
+        /* signature area */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        .signature-col {
+            text-align: left;
+        }
+
+        .signed-by {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .sig-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .sig-line {
+            flex: 1;
+        }
+
+        .party-name {
+            font-weight: 600;
+            margin: 4px 0;
+        }
+
+        .sig-date {
+            margin: 4px 0 12px 0;
+            font-size: 13px;
+        }
+
+        .party-line {
+            border-bottom: 1px solid #000;
+            height: 18px;
+            margin: 12px 0 4px 0;
+        }
+
+        .role {
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .total-center {
+            text-align: center;
+        }
+
+
+
+        .col-header {
+            display: flex;
+            justify-content: space-between;
+            /* pushes spans apart */
+            align-items: center;
+            /* vertically centers them */
+        }
+
+
+
+
+
+
+
+
+
+
+        h3 {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .line {
+            margin: 10px 0;
+        }
+
+        .line input {
+            border: none;
+            border-bottom: 1px solid #000;
+            width: 250px;
+            padding: 2px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .row div {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .address {
+            margin-top: 8px;
+        }
+
+        .address input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #000;
+            padding: 2px;
+        }
     </style>
 </head>
 
@@ -417,11 +663,9 @@
             </div>
             <div class="subsection">
                 <span>☐&nbsp;C.</span>
-                <div class="sub_subsection">
-                    NATURAL RESOURCE LEASES: "Natural Resource Lease" means an existing oil and gas, mineral,
-                    geothermal, water, wind, or other natural resource lease affecting the Property to which Seller is a
-                    party.
-                </div>
+                NATURAL RESOURCE LEASES: "Natural Resource Lease" means an existing oil and gas, mineral,
+                geothermal, water, wind, or other natural resource lease affecting the Property to which Seller is a
+                party.
             </div>
             <div class="subsection">
                 <span>☐&nbsp;1.</span>
@@ -1339,14 +1583,15 @@
         <div class="section">
             <p><strong>11. SPECIAL PROVISIONS:</strong> </p>
             <div class="subsection">
-                            <p>(This paragraph is intended to be used only for additional
-                informational
-                items. An informational item is a statement that completes a blank in a contract form, discloses
-                factual information, or provides instructions. Real estate brokers and sales agents are prohibited
-                from practicing law and shall not add to, delete, or modify any provision of this contract unless
-                drafted by a party to this contract or a party's attorney.) <span class="text-input user_input"> Buyer
-                    may obtain a private loan with no appraisal
-                    contingencies</span> </p>
+                <p>(This paragraph is intended to be used only for additional
+                    informational
+                    items. An informational item is a statement that completes a blank in a contract form, discloses
+                    factual information, or provides instructions. Real estate brokers and sales agents are prohibited
+                    from practicing law and shall not add to, delete, or modify any provision of this contract unless
+                    drafted by a party to this contract or a party's attorney.) <span class="text-input user_input">
+                        Buyer
+                        may obtain a private loan with no appraisal
+                        contingencies</span> </p>
             </div>
 
         </div>
@@ -1358,77 +1603,1170 @@
             <div class="subsection">
                 <span>A.</span>
                 <div class="sub_subsection">
-The following expenses must be paid at or prior to closing:
+                    The following expenses must be paid at or prior to closing:
                 </div>
             </div>
 
+            <div class="subsection">
+                <div class="subsection">
+                    <span>(1)</span>
+                    <div class="sub_subsection">
+                        Seller shall pay the following expenses (Seller's Expenses):
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="subsection">
                 <div class="subsection">
                     <div class="subsection">
-                        <span>(1)</span>
-Seller shall pay the following expenses (Seller's Expenses):
-                    </div>
-                </div>
-                                <div class="subsection">
-                    <div class="subsection">
-                        <!-- <span>(1)</span> -->
+                        <span>(a)</span>
                         <div class="sub_subsection">
-                            <span>(a)</span>
-releases of existing liens, including prepayment penalties and recording fees; release of
-Seller's loan liability; tax statements or certificates; preparation of deed; one-half of
-escrow fee; brokerage fees that Seller has agreed to pay; and other expenses payable
-by Seller under this contract:
+                            releases of existing liens, including prepayment penalties and recording fees; release of
+                            Seller's loan liability; tax statements or certificates; preparation of deed; one-half of
+                            escrow fee; brokerage fees that Seller has agreed to pay; and other expenses payable
+                            by Seller under this contract;
                         </div>
                     </div>
                 </div>
-                                <div class="subsection">
-                    <div class="subsection">
-                        <!-- <span>(1)</span> -->
-                        <div class="sub_subsection">
-                        <div class="sub_subsection">
-                            <!-- <span>(a)</span> -->
-releases of existing liens, including prepayment penalties and recording fees; release of
-Seller's loan liability; tax statements or certificates; preparation of deed; one-half of
-escrow fee; brokerage fees that Seller has agreed to pay; and other expenses payable
-by Seller under this contract:
-                        </div>
-                    </div>
-                </div>
+            </div>
 
+            <div class="subsection">
+                <div class="subsection">
+                    <div class="subsection">
+                        <span>(b)</span>
+                        <div class="sub_subsection">
+                            the following amount to be applied to brokerage fees that Buyer has agreed to pay: ☐
+                            $_____________ or ☐ $_____________
+                            % of the Sales Price (check one box only); and
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="subsection">
+                <div class="subsection">
+                    <div class="subsection">
+                        <span>(c)</span>
+                        <div class="sub_subsection">
+                            an amount not to exceed
+                            $_____________ to be applied to other Buyer's Expenses.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="subsection">
+                <div class="subsection">
+                    <span>(2)</span>
+                    <div class="sub_subsection">
+                        Buyer shall pay the following expenses (Buyer's Expenses): Appraisal fees; loan application
+                        fees; origination charges; credit reports; preparation of loan documents; interest on the
+                        notes from date of disbursement to one month prior to dates of first monthly payments;
+                        recording fees; copies of easements and restrictions; loan title policy with endorsements
+                        required by lender; loan-related inspection fees; photos; amortization schedules; one-half
+                        of escrow fee; all prepaid items, including required premiums for flood and hazard
+                        insurance, reserve deposits for insurance, ad valorem taxes and special governmental
+                        assessments; final compliance inspection; courier fee; repair inspection; underwriting fee;
+                        wire transfer fee; expenses incident to any loan; Private Mortgage Insurance Premium
+                        (PMI), VA Loan Funding Fee, or FHA Mortgage Insurance Premium (MIP) as required by the
+                        lender; brokerage fees that Buyer has agreed to pay; and other expenses payable by Buyer
+                        under this contract.
+                    </div>
+                </div>
+            </div>
 
 
             <div class="subsection">
                 <span>B.</span>
                 <div class="sub_subsection">
-                    SMART DEVICES: "Smart Device" means a device that connects to the internet to enable
-                    remote use, monitoring, and management of: (i) the Property; (ii) items identified in any Non-
-                    Realty Items Addendum; or (iii) items in a Fixture Lease assigned to Buyer. At the time Seller
+                    If any expense exceeds an amount expressly stated in this contract for such expense to be
+                    paid by a party, that party may terminate this contract unless the other party agrees to pay
+                    such excess. Buyer may not pay charges and fees expressly prohibited by FHA, VA, Texas
+                    Veterans Land Board or other governmental loan program regulations.
                 </div>
+            </div>
 
 
-                <div class="subsection">
-                    <div class="subsection">
-                        <span>(1)</span>
-                        <div class="sub_subsection">
-                            deliver to Buyer written information containing all access codes, usernames, passwords,
-                            and applications Buyer will need to access, operate, manage, and control the Smart
-                            Devices; and
+        </div>
+
+
+
+
+        <div class="section">
+            <p><strong>13. PRORATIONS:</strong> </p>
+            <div class="subsection">
+                <p>Taxes for the current year, interest, rents, and regular periodic maintenance
+                    fees, assessments, and dues (including prepaid items) will be prorated through the Closing Date.
+                    The tax proration may be calculated taking into consideration any change in exemptions that will
+                    affect the
+                    current year's taxes. If taxes for the current year vary from the amount prorated at closing, the
+                    parties shall
+                    adjust the prorations when tax statements for the current year are available. If taxes are not paid
+                    at or prior to
+                    closing, Buyer shall pay taxes for the current year.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <p><strong>14. CASUALTY LOSS:</strong> </p>
+            <div class="subsection">
+                <p>If any part of the Property is damaged or destroyed by fire or other casualty
+                    after the Effective Date of this contract, Seller shall restore the Property to its previous
+                    condition
+                    as soon as reasonably possible, but in any event by the Closing Date. If Seller fails to do so due
+                    to
+                    factors beyond Seller's control, Buyer may (a) terminate this contract and the earnest money will
+                    be refunded to Buyer (b) extend the time for performance up to 15 days and the Closing Date will
+                    be extended as necessary or (c) accept the Property in its damaged condition with an assignment
+                    of insurance proceeds, if permitted by Seller's insurance carrier, and receive credit from Seller at
+                    closing in the amount of the deductible under the insurance policy. Seller's obligations under this
+                    paragraph are independent of any other obligations of Seller under this contract.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <p><strong>15. DEFAULT:</strong> </p>
+            <div class="subsection">
+                <p>If Buyer fails to comply with this contract, Buyer will be in default, and Seller may (a)
+                    enforce specific performance, seek such other relief as may be provided by law, or both, or (b)
+                    terminate this contract and receive the earnest money as liquidated damages, thereby releasing
+                    both parties from this contract. If Seller fails to comply with this contract, Seller will be in
+                    default
+                    and Buyer may (a) enforce specific performance, seek such other relief as may be provided by
+                    law, or both, or (b) terminate this contract and receive the earnest money, thereby releasing both
+                    parties from this contract.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <p><strong>16. MEDIATION:</strong> </p>
+            <div class="subsection">
+                <p>It is the policy of the State of Texas to encourage resolution of disputes through
+                    alternative dispute resolution procedures such as mediation. Any dispute between Seller and
+                    Buyer related to this contract which is not resolved through informal discussion will be
+                    submitted to a mutually acceptable mediation service or provider. The parties to the mediation
+                    shall bear the mediation costs equally. This paragraph does not preclude a party from seeking
+                    equitable relief from a court of competent jurisdiction.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <p><strong>17. ATTORNEY'S FEES:</strong> </p>
+            <div class="subsection">
+                <p>A Buyer, Seller, Listing Broker, Other Broker, or Escrow Agent who prevails
+                    in any legal proceeding related to this contract is entitled to recover reasonable attorney's fees
+                    and all costs of such proceeding.
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <div class="section">
+            <p><strong>18. ESCROW:</strong> </p>
+            <div class="subsection">
+                <span>A.</span>
+                <div class="sub_subsection">
+                    ESCROW: The Escrow Agent is not (i) a party to this contract and does not have liability for the
+                    performance or nonperformance of any party to this contract, (ii) liable for interest on the
+                    earnest money and (iii) liable for the loss of any earnest money caused by the failure of any
+                    financial institution in which the earnest money has been deposited unless the financial
+                    institution is acting as Escrow Agent. Escrow Agent may require any disbursement made in
+                    connection with this contract to be conditioned on Escrow Agent's collection of good funds
+                    acceptable to Escrow Agent.
+                </div>
+            </div>
+            <div class="subsection">
+                <span>B.</span>
+                <div class="sub_subsection">
+                    EXPENSES: At closing, the earnest money must be applied first to any cash down payment,
+                    then to Buyer's Expenses and any excess refunded to Buyer. If no closing occurs, Escrow Agent
+                    may: (i) require a written release of liability of the Escrow Agent from all parties before
+                    releasing any earnest money; and (ii) require payment of unpaid expenses incurred on behalf
+                    of a party. Escrow Agent may deduct authorized expenses from the earnest money payable to a
+                    party. "Authorized expenses" means expenses incurred by Escrow Agent on behalf of the party
+                    entitled to the earnest money that were authorized by this contract or that party.
+                </div>
+            </div>
+            <div class="subsection">
+                <span>C.</span>
+                <div class="sub_subsection">
+                    DEMAND: Upon termination of this contract, either party or the Escrow Agent may send a
+                    release of earnest money to each party and the parties shall execute counterparts of the
+                    release and deliver same to the Escrow Agent. If either party fails to execute the release, either
+                    party may make a written demand to the Escrow Agent for the earnest money. If only one
+                    party makes written demand for the earnest money, Escrow Agent shall promptly provide a
+                    copy of the demand to the other party. If Escrow Agent does not receive written objection to
+                    the demand from the other party within 15 days, Escrow Agent may disburse the earnest
+                    money to the party making demand reduced by the amount of unpaid expenses incurred on
+                    behalf of the party receiving the earnest money and Escrow Agent may pay the same to the
+                    creditors. If Escrow Agent complies with the provisions of this paragraph, each party hereby
+                    releases Escrow Agent from all adverse claims related to the disbursal of the earnest money.
+                </div>
+            </div>
+            <div class="subsection">
+                <span>D.</span>
+                <div class="sub_subsection">
+                    DAMAGES: Any party who wrongfully fails or refuses to sign a release acceptable to the Escrow
+                    Agent within 7 days of receipt of the request will be liable to the other party for (i) damages;
+                    (ii) the earnest money; (iii) reasonable attorney's fees; and (iv) all costs of suit.
+                </div>
+            </div>
+            <div class="subsection">
+                <span>E.</span>
+                <div class="sub_subsection">
+                    NOTICES: Escrow Agent's notices will be effective when sent in compliance with Paragraph 21.
+                    Notice of objection to the demand will be deemed effective upon receipt by Escrow Agent.
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+            <p><strong>19. REPRESENTATIONS:</strong> </p>
+            <div class="subsection">
+                <p>All covenants, representations and warranties in this contract survive
+                    closing. If any representation of Seller in this contract is untrue on the Closing Date, Seller will
+                    be
+                    in default. Unless expressly prohibited by written agreement, Seller may continue to show the
+                    Property and receive, negotiate and accept back up offers.
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <p><strong>20. FEDERAL REQUIREMENTS:</strong> </p>
+            <div class="subsection">
+                <p>and its regulations, or if Seller fails to deliver an affidavit or a certificate of non-foreign
+                    status to
+                    Buyer that Seller is not a "foreign person," then Buyer shall withhold from the sales proceeds an
+                    amount sufficient to comply with applicable tax law and deliver the same to the Internal Revenue
+                    Service together with appropriate tax forms. Internal Revenue Service regulations require filing
+                    written reports if currency in excess of specified amounts is received in the transaction.
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="section">
+            <p><strong>21. NOTICES:</strong> </p>
+            <div class="subsection">
+                <p>
+                    All notices from one party to the other must be in writing and are effective when
+                    mailed to, hand-delivered at, or transmitted by fax or electronic transmission as follows:
+                </p>
+            </div>
+
+
+            <div class="notices-container">
+
+                <div class="notice-grid">
+                    <!-- LEFT COLUMN: Buyer -->
+                    <div class="notice-col" aria-labelledby="buyer-heading">
+                        <div class="col-header" id="buyer-heading">
+                            <span>To Buyer at:</span>
+                        </div>
+
+                        <div class="field-row">
+                            <!-- <label class="field-label">Address:</label> -->
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">Phone:
+                                <span class="small-line" aria-hidden="true"></span>
+                            </label>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">E-mail/Fax:
+                                <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div>
+                            </label>
+                        </div>
+
+                        <div class="copy-note">With a copy to Buyer's agent at:</div>
+                        <div class="agent-block">
+                            <div class="field-label two-lines">Agent name / Office:</div>
+                            <div class="line"></div>
+                            <div class="field-label two-lines">E-mail/Fax:</div>
+                            <div class="line" style="width:80%;"></div>
                         </div>
                     </div>
+
+                    <!-- RIGHT COLUMN: Seller -->
+                    <div class="notice-col" aria-labelledby="seller-heading">
+                        <div class="col-header" id="seller-heading">
+                            <span>To Seller at:</span>
+                        </div>
+
+                        <div class="field-row">
+                            <!-- <label class="field-label">Address:</label> -->
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">Phone:
+                                <span class="small-line" aria-hidden="true"></span>
+                            </label>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">E-mail/Fax:
+                                <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div>
+                            </label>
+                        </div>
+
+                        <div class="copy-note">With a copy to Seller's agent at:</div>
+                        <div class="agent-block">
+                            <div class="field-label two-lines">Agent name / Office:</div>
+                            <div class="line"></div>
+                            <div class="field-label two-lines">E-mail/Fax:</div>
+                            <div class="line" style="width:80%;"></div>
+                        </div>
+                        <!-- </div> -->
+                    </div>
                 </div>
+            </div>
 
 
 
-                <div class="subsection">
-                    <div class="subsection">
-                        <span>(2)</span>
-                        <div class="sub_subsection">
-                            terminate and remove all access and connections to the improvements and accessories
-                            from any of Seller's personal devices including but not limited to phones and computers.
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="section">
+            <p><strong>22. AGREEMENT OF PARTIES:</strong> </p>
+            <div class="subsection">
+                <p>
+                    This contract contains the entire agreement of the parties and
+                    cannot be changed except by their written agreement. Addenda which are a part of this contract
+                    are (Check all applicable boxes):
+                </p>
+            </div>
+
+
+            <div class="notices-container">
+
+                <div class="notice-grid">
+                    <!-- LEFT COLUMN: Buyer -->
+                    <div class="notice-col" aria-labelledby="buyer-heading">
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Third Party Financing Addendum</span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Seller Financing Addendum </span>
+                        </div>
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Addendum for Property Subject to
+                                Mandatory Membership in a Property
+                                Owners Association </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Buyer's Temporary Residential Lease </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Loan Assumption Addendum </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Sale of Other Property by
+                                Buyer </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Reservation of Oil, Gas
+                                and Other Minerals </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for "Back-Up" Contract </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Addendum for Coastal Area Property </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Addendum for Authorizing Hydrostatic
+                                Testing </span>
+                        </div>
+
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;Seller's Temporary Residential Lease</span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Short Sale Addendum</span>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: Seller -->
+                    <div class="notice-col" aria-labelledby="seller-heading">
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Property Located Seaward
+                                of the Gulf Intracoastal Waterway
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Seller's Disclosure of
+                                Information on Lead-based Paint and
+                                Lead-based Paint Hazards as Required by
+                                Federal Law
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Property in a Propane Gas
+                                System Service Area
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum Regarding Residential Leases
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum Regarding Fixture Leases
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum containing Notice of Obligation
+                                to Pay Improvement District Assessment
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Addendum for Section 1031 Exchange
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+
+
+                        <div class="col-header" id="buyer-heading">
+                            <span>☐&nbsp;&nbsp;&nbsp; Other (list):
+                            </span>
+                        </div>
+
+
+                        <div class="field-row">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+        <div class="section">
+            <p><strong>23. CONSULT AN ATTORNEY BEFORE SIGNING:</strong> </p>
+            <div class="subsection">
+                <p>
+                    TREC rules prohibit real estate brokers and sales
+                    agents from giving legal advice. READ THIS CONTRACT CAREFULLY.
+                </p>
+            </div>
+
+
+            <div class="notices-container">
+
+                <div class="notice-grid">
+                    <!-- LEFT COLUMN: Buyer -->
+                    <div class="notice-col" aria-labelledby="buyer-heading">
+                        <div class="col-header" id="buyer-heading">
+                            <span>Buyer's
+                                Attorney is:</span>
+                        </div>
+
+                        <div class="field-row">
+                            <!-- <label class="field-label">Address:</label> -->
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">Phone:
+                                <!-- <div class="line"></div> -->
+                                <span class="small-line" aria-hidden="true"></span>
+                            </label>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">Fax:
+                                <span class="small-line" aria-hidden="true"></span>
+                                <!-- <div class="line"></div> -->
+                                <!-- <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div> -->
+                            </label>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">E-mail:
+                                <span class="small-line" aria-hidden="true"></span>
+                                <!-- <div class="line"></div> -->
+                                <!-- <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div> -->
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: Seller -->
+                    <div class="notice-col" aria-labelledby="seller-heading">
+                        <div class="col-header" id="seller-heading">
+                            <span>Seller's
+                                Attorney is:</span>
+                        </div>
+
+                        <div class="field-row">
+                            <!-- <label class="field-label">Address:</label> -->
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">Phone:
+                                <span class="small-line" aria-hidden="true"></span>
+                            </label>
+                        </div>
+                        <div class="field-row">
+                            <label class="field-label">Fax:
+                                <span class="small-line" aria-hidden="true"></span>
+                                <!-- <div class="line"></div> -->
+                                <!-- <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div> -->
+                            </label>
+                        </div>
+
+                        <div class="field-row">
+                            <label class="field-label">E-mail:
+                                <span class="small-line" aria-hidden="true"></span>
+                                <!-- <div class="line"></div> -->
+                                <!-- <div class="small-line" style="width:90%; display:block;" aria-hidden="true"></div> -->
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
+        <!-- Executed Section -->
+        <div class="executed-box">
+            <p class="total-center">
+                EXECUTED the <span class="line small-inline"></span> day of
+                <span class="line large-inline"></span>, 20<span class="line small-inline"></span>
+                (Effective Date).<br />
+                (BROKER: FILL IN THE DATE OF FINAL ACCEPTANCE.)
+            </p>
+        </div>
+
+        <div class="signature-grid">
+            <div class="signature-col">
+                <div class="signed-by">
+                    <span class="sig-label">Signed by:</span>
+                    <div class="line sig-line"></div>
+                </div>
+                <p class="party-name">
+                    Buyer Silverkey Investments LLC or Designated entity
+                </p>
+                <p class="sig-date">8/25/2025</p>
+                <div class="line party-line"></div>
+                <p class="role">Buyer</p>
+            </div>
+
+            <div class="signature-col">
+                <p class="party-name">
+                    Seller SECRETARY OF VETERANS AFFAIRS
+                </p>
+                <div class="line party-line"></div>
+                <p class="role">Seller</p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="">
+            <p class="total-center"><strong>BROKER INFORMATION</strong> <br> (Print name(s) only. Do not sign) </p>
+
+            <div class="notices-container">
+
+                <div class="notice-grid">
+                    <!-- LEFT COLUMN: Buyer -->
+                    <div class="notice-col col-header" aria-labelledby="buyer-heading">
+                        <div style="display: block;">
+                            <div class="col-header" id="buyer-heading">
+                                <span class="text-input user_input">Loaded Realty Company</span>
+                                <span class="text-input user_input" style="text-align: end;">9015900</span>
+                            </div>
+                            <div class="col-header" id="buyer-heading">
+                                <span>Other Broker Firm</span>
+                                <span>License No.</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div class="notice-col col-header" style="display: block;" aria-labelledby="buyer-heading"> -->
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Poly Properties</span>
+                            <span class="text-input user_input" style="text-align: end;"> </span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Listing Broker Firm</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="">represents</span>
+                            <div style="display: block; ">
+                                <div style="margin-bottom: 10px;">☐ Buyer only as Buyer's agent</div>
+                                <div>☐ Seller as Listing Broker's subagent</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="">represents</span>
+                            <div style="display: block; ">
+                                <div style="margin-bottom: 10px;">☐ Seller and Buyer as an intermediary</div>
+                                <div>☐ Seller only as Seller's agent</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Joel Villanueva</span>
+                            <span class="text-input user_input" style="text-align: end;">817205</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Associate's Name</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Harold Johnson</span>
+                            <span class="text-input user_input" style="text-align: end;">0510611</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Listing Associate's Name</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Loaded Realty Group</span>
+                            <!-- <span class="text-input user_input" style="text-align: end;">0510611</span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Team Name</span>
+                            <!-- <span>License No.</span> -->
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Poly Properties</span>
+                            <!-- <span class="text-input user_input" style="text-align: end;">0510611</span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Team Name</span>
+                            <!-- <span>License No.</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">villanuevajoele@gmail.com</span>
+                            <span class="text-input user_input" style="text-align: end;">(210)740-5663</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Associate's Email Address</span>
+                            <span>Phone</span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">realestate@liberated.net</span>
+                            <span class="text-input user_input" style="text-align: end;">(210)473-5578</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Listing Associate's Email Addresss</span>
+                            <span>Phone</span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Carlos Puckerin</span>
+                            <span class="text-input user_input" style="text-align: end;">0759746</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Licensed Supervisor of Associate</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input">Carlos Puckerin</span> -->
+                            <!-- <span class="text-input user_input" style="text-align: end;">0759746</span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Licensed Supervisor of Listing Associate</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">825 Town & Country Lane</span>
+                            <span class="text-input user_input" style="text-align: end;">(832)856-9022</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Other Broker's Address</span>
+                            <span>Phone</span>
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">8238 Morning Grove</span>
+                            <span class="text-input user_input" style="text-align: end;">(210)473-5578</span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Listing Broker's Office Address</span>
+                            <span>Phone</span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Houston</span>
+                            <span class="text-input user_input" style="text-align: end;">TX / 77056</span>
+                            <!-- <span class="text-input user_input" style="text-align: end;">77056</span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>City</span>
+                            <span>State / zip</span>
+                            <!-- <span>Zip</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input">Houston</span>
+                            <span class="text-input user_input" style="text-align: end;">TX / 78109</span>
+                            <!-- <span class="text-input user_input" style="text-align: end;">77056</span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>City</span>
+                            <span>State / zip</span>
+                            <!-- <span>Zip</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span></span>
+                            <span></span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Selling Associate's Name</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span>Selling Associate's Name</span>
+                            <span>License No.</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <!-- <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Team Name</span>
+                            <!-- <span>License No.</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span>Selling Associate's Email Address</span>
+                            <span>Phone</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Selling Associate's Email Address</span>
+                            <span>Phone</span>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span>Selling Associate's Email Address</span>
+                            <span>Phone</span> -->
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Licensed Supervisor of Selling Associate</span>
+                            <span>License No.</span>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span>Selling Associate's Email Address</span>
+                            <span>Phone</span> -->
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <!-- <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>Selling Associate's Office Address</span>
+                            <!-- <span>License No.</span> -->
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span> -->
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <!-- <span>Selling Associate's Email Address</span>
+                            <span>Phone</span> -->
+                        </div>
+                    </div>
+
+
+
+
+                    <div>
+                        <div class="col-header" id="buyer-heading">
+                            <span class="text-input user_input"></span>
+                            <span class="text-input user_input" style="text-align: end;"></span>
+                        </div>
+                        <div class="col-header" id="buyer-heading">
+                            <span>City</span>
+                            <span>State / Zip</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div>
+                Disclosure: Pursuant to a previous, separate agreement, Listing Broker has agreed to pay Other
+                Broker a fee(☐ $________ or ☐ <span class="user_input text-input">3.00%</span>of the Sales
+                Price). This disclosure is for informational purposes and does not
+                change the previous agreement between brokers to pay or share a commission.
+
+            </div>
+
+
+        </div>
+
+
+
+        <p style="text-align:center;"><strong>(Address of Property)</strong></p>
+
+        <!-- OPTION FEE RECEIPT -->
+        <div class="container">
+            <h3>Option Fee Receipt</h3>
+            <div class="line">
+                Receipt of $ <input type="text"> (Option Fee) in the form of <input type="text"> is acknowledged.
+            </div>
+            <div class="row">
+                <div>
+                    <label>Escrow Agent</label>
+                    <span>Buyer's Choice</span>
+                </div>
+                <div>
+                    <label>Date</label>
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+
+        <!-- EARNEST MONEY RECEIPT -->
+        <div class="container">
+            <h3>Earnest Money Receipt</h3>
+            <div class="line">
+                Receipt of $ <input type="text"> Earnest Money in the form of <input type="text"> is acknowledged.
+            </div>
+            <div class="row">
+                <div><label>Escrow Agent</label><input type="text"></div>
+                <div><label>Received by</label><input type="text"></div>
+                <div><label>Email Address</label><input type="text"></div>
+                <div><label>Date/Time</label><input type="text"></div>
+            </div>
+            <div class="address">
+                <label>Address</label>
+                <input type="text">
+            </div>
+            <div class="row">
+                <div><label>City</label><input type="text"></div>
+                <div><label>State</label><input type="text"></div>
+                <div><label>Zip</label><input type="text"></div>
+            </div>
+            <div class="row">
+                <div><label>Phone</label><input type="text"></div>
+                <div><label>Fax</label><input type="text"></div>
+            </div>
+        </div>
+
+        <!-- CONTRACT RECEIPT -->
+        <div class="container">
+            <h3>Contract Receipt</h3>
+            <div class="line">
+                Receipt of the Contract is acknowledged.
+            </div>
+            <div class="row">
+                <div><label>Escrow Agent</label><input type="text"></div>
+                <div><label>Received by</label><input type="text"></div>
+                <div><label>Email Address</label><input type="text"></div>
+                <div><label>Date</label><input type="text"></div>
+            </div>
+            <div class="address">
+                <label>Address</label>
+                <input type="text">
+            </div>
+            <div class="row">
+                <div><label>City</label><input type="text"></div>
+                <div><label>State</label><input type="text"></div>
+                <div><label>Zip</label><input type="text"></div>
+            </div>
+            <div class="row">
+                <div><label>Phone</label><input type="text"></div>
+                <div><label>Fax</label><input type="text"></div>
+            </div>
+        </div>
+
+        <!-- ADDITIONAL EARNEST MONEY RECEIPT -->
+        <div class="container">
+            <h3>Additional Earnest Money Receipt</h3>
+            <div class="line">
+                Receipt of $ <input type="text"> additional Earnest Money in the form of <input type="text"> is
+                acknowledged.
+            </div>
+            <div class="row">
+                <div><label>Escrow Agent</label><input type="text"></div>
+                <div><label>Received by</label><input type="text"></div>
+                <div><label>Email Address</label><input type="text"></div>
+                <div><label>Date/Time</label><input type="text"></div>
+            </div>
+            <div class="address">
+                <label>Address</label>
+                <input type="text">
+            </div>
+            <div class="row">
+                <div><label>City</label><input type="text"></div>
+                <div><label>State</label><input type="text"></div>
+                <div><label>Zip</label><input type="text"></div>
+            </div>
+            <div class="row">
+                <div><label>Phone</label><input type="text"></div>
+                <div><label>Fax</label><input type="text"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    </div>
+
+
+
 
 
 
